@@ -14,5 +14,18 @@ public class DatabaseUtil {
 		return count;
 		
 	}
+	//(rawNum)番目の列のデータをString型で取り出すメソッド
+	public static String[] getData(SQLiteDatabase db,String sql,String TABLE_NAME){
+		
+		
+		Cursor cursor=db.rawQuery(sql, null);
+		int dataNum=cursor.getCount();
+		String[] strData=new String[dataNum];
+		for(int i=0;i<dataNum;i++){
+			strData[i]=cursor.getString(0);
+			cursor.moveToNext();
+		}
+		return strData;
+	}
 
 }
